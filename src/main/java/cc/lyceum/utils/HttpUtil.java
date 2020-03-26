@@ -13,6 +13,7 @@ public class HttpUtil {
 
     public static Connection connect(String url) {
         return Jsoup.connect(url)
+                .ignoreContentType(true)
                 .ignoreHttpErrors(true);
     }
 

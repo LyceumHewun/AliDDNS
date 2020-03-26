@@ -20,7 +20,7 @@ RR = www
 # 解析生效时间
 TTL = 600000
 ```
-2.直接运行 ```cc.lyceum.AliDDNSLauncher.main``` 类
+2.直接执行 ```cc.lyceum.AliDDNSLauncher.main``` 方法
 ## 依赖
 ```xml
 <dependency>
