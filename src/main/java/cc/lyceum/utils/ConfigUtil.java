@@ -17,7 +17,7 @@ public class ConfigUtil {
     /**
      * 配置文件路径
      */
-    private static final String CONFIG_FILE_PATH = "./config.setting";
+    private static final String CONFIG_FILE_PATH = "config.setting";
 
     private Setting setting;
 
@@ -27,8 +27,9 @@ public class ConfigUtil {
         StaticLog.info("正在读取(config.setting)配置文件");
 
         File configFile = new File(CONFIG_FILE_PATH);
-        if (FileUtil.exist(configFile)) {
+        if (!FileUtil.exist(configFile)) {
             StaticLog.error("配置文件不存在");
+            System.exit(-1);
         }
 
         setting = new Setting(configFile, CharsetUtil.CHARSET_UTF_8, true);
