@@ -5,7 +5,9 @@ import cc.lyceum.utils.AliDNSUtil;
 import cc.lyceum.utils.ConfigUtil;
 import cc.lyceum.utils.IpUtil;
 import cn.hutool.core.thread.ThreadUtil;
+import cn.hutool.log.LogFactory;
 import cn.hutool.log.StaticLog;
+import cn.hutool.log.level.Level;
 import com.aliyuncs.alidns.model.v20150109.DescribeDomainRecordsResponse;
 
 /**
@@ -17,6 +19,8 @@ public class AliDDNSLauncher {
     public static void main(String[] args) {
         // 入参
 //        args
+        // 设置日志级别
+        LogFactory.get().isEnabled(Level.INFO);
         ThreadUtil.execute(AliDDNSLauncher::mainThread);
     }
 
