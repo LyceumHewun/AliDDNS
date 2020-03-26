@@ -25,20 +25,28 @@ public class AliDDNSLauncher {
     }
 
     private static void mainThread() {
-        Config config = ConfigUtil.getConfig();
+        while (true) {
+            Config config = ConfigUtil.getConfig();
 
-        ThreadUtil.sleep(config.getRefreshTime());
+            try {
+                String extranetsIP = IpUtil.getExtranetsIP();
+                StaticLog.info("当前外网IP: {}", extranetsIP);
 
-        String extranetsIP = IpUtil.getExtranetsIP();
-        StaticLog.info("当前外网IP: {}", extranetsIP);
+                DescribeDomainRecordsResponse.Record record = AliDNSUtil.getDescribeDomainRecords(config.getDomain(), config.getRR());
+                System.out.println(record);
+                if (null == record) {
+                    boolean result = AliDNSUtil.addDomainRecord(config.getDomain(), config.getRR(), "A", extranetsIP, config.getTTL());
+                    StaticLog.info("添加解析记录: {}", result ? "成功" : "失败");
+                } else {
+                    boolean result = AliDNSUtil.updateDomainRecord(record.getRecordId(), config.getRR(), "A", extranetsIP, config.getTTL());
+                    StaticLog.info("更新解析记录: {}", result ? "成功" : "失败");
+                }
 
-        DescribeDomainRecordsResponse.Record record = AliDNSUtil.getDescribeDomainRecords(config.getDomain(), config.getRR());
-        if (null == record) {
-            boolean result = AliDNSUtil.addDomainRecord(config.getDomain(), config.getRR(), "A", extranetsIP, config.getTTL());
-            StaticLog.info("添加解析记录: {}", result ? "成功" : "失败");
-        } else {
-            boolean result = AliDNSUtil.updateDomainRecord(record.getRecordId(), config.getRR(), "A", extranetsIP, config.getTTL());
-            StaticLog.info("更新解析记录: {}", result ? "成功" : "失败");
+            } catch (Exception e) {
+                StaticLog.error("抛出异常: {}", e);
+            } finally {
+                ThreadUtil.sleep(config.getRefreshTime());
+            }
         }
     }
 }

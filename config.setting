@@ -1,0 +1,13 @@
+# 多长时间(毫秒)刷新一次DNS, 该时间建议不要低于TTL
+refreshTime = 3600000
+# 阿里云用户 AccessKey ID
+# 设置地址 https://usercenter.console.aliyun.com/
+aliyunAccessKeyId = yourAliyunAccessKeyId
+# 阿里云用户 AccessKey Secret
+aliyunAccessKeySecret = yourAliyunAccessKeySecret
+# 域名
+domain = yourDomain
+# 域名主机记录
+RR = www
+# 解析生效时间
+TTL = 600000
