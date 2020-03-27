@@ -19,7 +19,7 @@ AliDDNS是基于阿里云云解析DNS API实现的DDNS本地程序。
 
 > 运行环境 JDK 1.8.0_211
 
-1. [下载]()
+1. [下载](https://github.com/LyceumHewun/AliDDNS/releases)
 2. 使用```java -jar```命令运行
 
 ### 配置
