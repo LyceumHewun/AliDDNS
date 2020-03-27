@@ -1,10 +1,31 @@
 # AliDDNS
+
 ## 简介
+
 AliDDNS是基于阿里云云解析DNS API实现的DDNS本地程序。
+
 ## 原理
+
 循环请求[wtfismyip](https://www.wtfismyip.com/json)获取当前网络环境的外网IP，然后调用阿里云云解析DNS API添加/修改DNS解析。
+
 ## 使用
-1.在程序目录添加配置文件(config.setting)，配置示例
+
+### 一、源码编译
+
+1. 使用```mvn package```打包
+2. 在jar包里的MANIFEST.MF文件上添加```Main-Class: cc.lyceum.AliDDNSLauncher```
+
+### 二、下载编译好的JAR包
+
+> 运行环境 JDK 1.8.0_211
+
+1. [下载]()
+2. 使用```java -jar```命令运行
+
+### 配置
+
+在程序目录添加配置文件(config.setting)，配置模板
+
 ```properties
 # 多长时间(毫秒)刷新一次DNS, 该时间建议不要低于TTL
 refreshTime = 3600000
@@ -15,13 +36,14 @@ aliyunAccessKeyId = yourAliyunAccessKeyId
 aliyunAccessKeySecret = yourAliyunAccessKeySecret
 # 域名
 domain = yourDomain
-# 域名主机记录
+# 域名主机记录(小写)
 RR = www
-# 解析生效时间
-TTL = 600000
+# 解析生效时间(秒, 600-86400)
+TTL = 600
 ```
-2.直接执行 ```cc.lyceum.AliDDNSLauncher.main``` 方法
+
 ## 依赖
+
 ```xml
 <dependency>
     <groupId>com.aliyun</groupId>
@@ -54,7 +76,9 @@ TTL = 600000
     <version>1.2.17</version>
 </dependency>
 ```
+
 ## License
+
 ```
 This is free and unencumbered software released into the public domain.
 
