@@ -29,7 +29,6 @@ public class AliDDNSLauncher {
                 StaticLog.info("当前外网IP: {}", extranetsIP);
 
                 DescribeDomainRecordsResponse.Record record = AliDNSUtil.getDescribeDomainRecords(config.getDomain(), config.getRR());
-                System.out.println(record);
                 if (null == record) {
                     boolean result = AliDNSUtil.addDomainRecord(config.getDomain(), config.getRR(), "A", extranetsIP, config.getTTL());
                     StaticLog.info("添加解析记录: {}", result ? "成功" : "失败");

@@ -24,7 +24,7 @@ public class Config {
      */
     private String domain;
     /**
-     * 域名主机记录
+     * 域名主机记录(小写)
      */
     private String RR;
     /**
@@ -61,7 +61,7 @@ public class Config {
     }
 
     public void setDomain(String domain) {
-        this.domain = domain;
+        this.domain = domain.toLowerCase();
     }
 
     public String getRR() {
