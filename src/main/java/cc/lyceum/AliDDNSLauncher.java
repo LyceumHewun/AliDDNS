@@ -5,9 +5,7 @@ import cc.lyceum.utils.AliDNSUtil;
 import cc.lyceum.utils.ConfigUtil;
 import cc.lyceum.utils.IpUtil;
 import cn.hutool.core.thread.ThreadUtil;
-import cn.hutool.log.LogFactory;
 import cn.hutool.log.StaticLog;
-import cn.hutool.log.level.Level;
 import com.aliyuncs.alidns.model.v20150109.DescribeDomainRecordsResponse;
 
 /**
@@ -19,8 +17,6 @@ public class AliDDNSLauncher {
     public static void main(String[] args) {
         // 入参
 //        args
-        // 设置日志级别
-        LogFactory.get().isEnabled(Level.INFO);
         ThreadUtil.execute(AliDDNSLauncher::mainThread);
     }
 
@@ -37,7 +33,7 @@ public class AliDDNSLauncher {
                 if (null == record) {
                     boolean result = AliDNSUtil.addDomainRecord(config.getDomain(), config.getRR(), "A", extranetsIP, config.getTTL());
                     StaticLog.info("添加解析记录: {}", result ? "成功" : "失败");
-                } else {
+                } else if (isNonEquals(record.getValue(), extranetsIP)) {
                     boolean result = AliDNSUtil.updateDomainRecord(record.getRecordId(), config.getRR(), "A", extranetsIP, config.getTTL());
                     StaticLog.info("更新解析记录: {}", result ? "成功" : "失败");
                 }
@@ -48,5 +44,13 @@ public class AliDDNSLauncher {
                 ThreadUtil.sleep(config.getRefreshTime());
             }
         }
+    }
+
+    private static boolean isNonEquals(String str0, String str1) {
+        if (str0.equals(str1)) {
+            StaticLog.info("外网IP与解析记录相同");
+            return false;
+        }
+        return true;
     }
 }
