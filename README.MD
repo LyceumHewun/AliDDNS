@@ -5,7 +5,7 @@ AliDDNS是基于阿里云云解析DNS API实现的DDNS本地程序。
 循环请求[wtfismyip](https://www.wtfismyip.com/json)获取当前网络环境的外网IP，然后调用阿里云云解析DNS API添加/修改DNS解析。
 ## 使用
 1.在程序目录添加配置文件(config.setting)，配置示例
-```lombok.config
+```properties
 # 多长时间(毫秒)刷新一次DNS, 该时间建议不要低于TTL
 refreshTime = 3600000
 # 阿里云用户 AccessKey ID
@@ -47,6 +47,11 @@ TTL = 600000
     <groupId>cn.hutool</groupId>
     <artifactId>hutool-setting</artifactId>
     <version>5.2.4</version>
+</dependency>
+<dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>1.2.17</version>
 </dependency>
 ```
 ## License
