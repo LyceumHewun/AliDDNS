@@ -42,6 +42,7 @@ public class ConfigUtil {
 
         try {
             config = setting.toBean(Config.class);
+            StaticLog.info("读取配置成功: {}", config);
         } catch (Exception e) {
             StaticLog.error("读取配置文件失败");
             throw new RuntimeException(e);

@@ -8,6 +8,8 @@ import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.log.StaticLog;
 import com.aliyuncs.alidns.model.v20150109.DescribeDomainRecordsResponse;
 
+import java.math.BigDecimal;
+
 /**
  * @author Lyceum Hewun
  * @date 2020-03-27 2:30
@@ -40,6 +42,9 @@ public class AliDDNSLauncher {
             } catch (Exception e) {
                 StaticLog.error("抛出异常: {}", e);
             } finally {
+                StaticLog.info("等待{}秒...", BigDecimal.valueOf(config.getRefreshTime())
+                        .divide(BigDecimal.valueOf(1000), 3, BigDecimal.ROUND_HALF_UP)
+                        .toPlainString());
                 ThreadUtil.sleep(config.getRefreshTime());
             }
         }

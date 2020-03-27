@@ -79,4 +79,16 @@ public class Config {
     public void setTTL(long TTL) {
         this.TTL = TTL;
     }
+
+    @Override
+    public String toString() {
+        return "Config{" +
+                "refreshTime=" + refreshTime +
+                ", aliyunAccessKeyId='" + aliyunAccessKeyId + '\'' +
+                ", aliyunAccessKeySecret='" + aliyunAccessKeySecret + '\'' +
+                ", domain='" + domain + '\'' +
+                ", RR='" + RR + '\'' +
+                ", TTL=" + TTL +
+                '}';
+    }
 }
