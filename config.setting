@@ -9,5 +9,5 @@ aliyunAccessKeySecret = yourAliyunAccessKeySecret
 domain = yourDomain
 # 域名主机记录(小写)
 RR = www
-# 解析生效时间(秒)
+# 解析生效时间(秒, 600-86400)
 TTL = 600

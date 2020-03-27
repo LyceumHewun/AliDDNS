@@ -28,7 +28,7 @@ public class Config {
      */
     private String RR;
     /**
-     * 解析生效时间(秒)
+     * 解析生效时间(秒, 600-86400)
      */
     private long TTL;
 
