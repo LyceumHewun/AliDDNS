@@ -15,7 +15,7 @@ public class IpUtil {
      * @return 外网IP地址
      */
     public static String getExtranetsIP() {
-        String ip = HttpUtil.getBody("https://www.wtfismyip.com/text");
+        String ip = HttpUtil.getBody("https://www.wtfismyip.com/text").trim();
 
         if (StringUtil.isBlank(ip)) {
             StaticLog.error("获取外网IP失败");
