@@ -68,6 +68,17 @@ public class AliDNSUtil {
         }
     }
 
+    /**
+     * 添加解析记录
+     * https://help.aliyun.com/document_detail/29772.html
+     *
+     * @param domain 域名
+     * @param rR     主机记录
+     * @param type   解析记录类型
+     * @param value  记录值
+     * @param TTL    解析生效时间(秒)
+     * @return 成功与否
+     */
     public static boolean addDomainRecord(String domain, String rR, String type, String value, long TTL) {
         IAcsClient client = getInstance().client;
 
