@@ -1,7 +1,6 @@
 package cc.lyceum.utils;
 
 import cn.hutool.log.StaticLog;
-import com.google.gson.JsonParser;
 import org.jsoup.helper.StringUtil;
 
 /**
@@ -11,20 +10,18 @@ import org.jsoup.helper.StringUtil;
 public class IpUtil {
 
     /**
-     * 通过访问 https://www.wtfismyip.com/json 获取当前网络环境的外网IP地址
+     * 通过访问 https://www.wtfismyip.com/text 获取当前网络环境的外网IP地址
      *
      * @return 外网IP地址
      */
     public static String getExtranetsIP() {
-        String json = HttpUtil.getBody("https://www.wtfismyip.com/json");
+        String ip = HttpUtil.getBody("https://www.wtfismyip.com/text");
 
-        if (StringUtil.isBlank(json)) {
+        if (StringUtil.isBlank(ip)) {
             StaticLog.error("获取外网IP失败");
             throw new RuntimeException("获取外网IP失败");
         }
 
-        return JsonParser.parseString(json)
-                .getAsJsonObject()
-                .get("YourFuckingIPAddress").getAsString();
+        return ip;
     }
 }

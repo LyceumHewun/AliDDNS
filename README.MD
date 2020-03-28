@@ -6,7 +6,7 @@ AliDDNS是基于阿里云云解析DNS API实现的DDNS本地程序。
 
 ## 原理
 
-循环请求[wtfismyip](https://www.wtfismyip.com/json)获取当前网络环境的外网IP，然后调用阿里云云解析DNS API添加/修改DNS解析。
+循环请求[wtfismyip](https://www.wtfismyip.com/text)获取当前网络环境的外网IP，然后调用阿里云云解析DNS API添加/修改DNS解析。
 
 ## 使用
 
@@ -59,11 +59,6 @@ TTL = 600
     <groupId>org.jsoup</groupId>
     <artifactId>jsoup</artifactId>
     <version>1.11.3</version>
-</dependency>
-<dependency>
-    <groupId>com.google.code.gson</groupId>
-    <artifactId>gson</artifactId>
-    <version>2.8.6</version>
 </dependency>
 <dependency>
     <groupId>cn.hutool</groupId>

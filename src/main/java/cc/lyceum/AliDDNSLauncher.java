@@ -43,7 +43,7 @@ public class AliDDNSLauncher {
                 StaticLog.error("抛出异常: {}", e);
             } finally {
                 StaticLog.info("等待{}秒...", BigDecimal.valueOf(config.getRefreshTime())
-                        .divide(BigDecimal.valueOf(1000), 3, BigDecimal.ROUND_HALF_UP)
+                        .divide(BigDecimal.valueOf(1000), 1, BigDecimal.ROUND_HALF_UP)
                         .toPlainString());
                 ThreadUtil.sleep(config.getRefreshTime());
             }
